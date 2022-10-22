@@ -8,7 +8,7 @@ body {
   text-align: center;
   width: 100%;
   max-width: 100%;
-
+  overflow: wrap;
 }
 
 #root {
@@ -53,6 +53,7 @@ ul {
   list-style-type: none;
   margin-top: 35px;
   max-width: 100%;
+  overflow: wrap;
 }
 
 li {
@@ -60,7 +61,7 @@ li {
   margin-top: 5px;
   width: 80%;
   max-width: 80%;
-  height: auto ;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -69,6 +70,7 @@ li {
   font-weight: 500;
   align-items: center;
   background-color: #303941;
+  overflow-wrap: anywhere
 }
 
 li button {
@@ -90,6 +92,10 @@ button:hover {
   color: rgb(209, 208, 208);
   background-color: #777;
   box-shadow: 6px 6px rgb(0, 0, 0, 0.2);
+}
+
+li p{
+  overflow: wrap;
 }
 
 

@@ -59,7 +59,7 @@ function App() {
       <ul>
         {list.map((item, index) => (
           <li key={index} className={index}  >
-            <span key={index} className='tarefa'>{item}</span>
+            <p key={index} className='tarefa'>{item}</p>
             <div className='button'>
               <button onClick={handleRemove}>Delete</button>
               <button onClick={handleEdit}>Editar</button>
