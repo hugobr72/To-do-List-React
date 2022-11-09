@@ -26,11 +26,21 @@ function App() {
       if (list.find(valor => valor === input)) return setInput('');
       if (input === '') return alert('Digite algo');
       setCont(cont + 1)
-      setList([...list, input]);
+      const array = [...list, input];
+      setList(array);
+      localStorage.setItem('tarefas', JSON.stringify(array))
       setInput('');
     }
+
   };
-  
+
+
+  if (list.length ===  0) {
+    const json = JSON.parse(localStorage.getItem('tarefas'));
+    console.log(json);
+    setList(json);
+  }
+
   cont === 0 ? document.title = 'Lista de tarefas' : document.title = `${cont} tarefas...`;
 
   const handleRemove = (e) => {
@@ -39,6 +49,7 @@ function App() {
     const newList = [...list];
     newList.splice(indexDel, 1);
     setList(newList);
+    localStorage.setItem('tarefas', JSON.stringify(newList))
   };
 
   const handleEdit = (e) => {
@@ -49,7 +60,7 @@ function App() {
     setInput(tarefaEdit);
     alert('Editando...')
   };
-
+  console.log(list)
 
   return (
     <div className="App">
@@ -57,7 +68,7 @@ function App() {
       <input type="text" onChange={handleInput} value={input} />
       <button onClick={handleAdd} className='Add'>Adicionar</button>
       <ul>
-        {list.map((item, index) => (
+        {list && list.map((item, index) => (
           <li key={index} className={index}  >
             <p key={index} className='tarefa'>{item}</p>
             <div className='button'>
