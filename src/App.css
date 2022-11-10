@@ -30,18 +30,18 @@ input {
 }
 
 .Add {
-  background-color: #999;
-  height: 39px;
-  width: 90px;
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 500;
   border: none;
   margin-left: 12px;
-  box-shadow: 6px 6px rgb(0, 0, 0, 0.1);
-  color: #222;
-  border-radius: 8px;
   cursor: pointer;
-  text-align: center;
+}
+
+
+.input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ul {
@@ -69,7 +69,8 @@ li {
   font-weight: 500;
   align-items: center;
   background-color: #303941;
-  overflow-wrap: anywhere
+  overflow-wrap: anywhere;
+  text-shadow:7px 5px 14px rgba(0,0,0,0.75);
 }
 
 li span {
@@ -81,8 +82,9 @@ li span {
   cursor: pointer;
 }
 
-span:hover {
-  color: rgb(126, 125, 125);
+span svg:hover {
+  color: rgb(156, 156, 156);
+  transform: scale(1.08);
 }
 
 .button {

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { BsFillTrashFill } from "react-icons/bs";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
+
 import './App.css';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     setInput(e.target.value);
   };
 
-  
+
   const handleAdd = () => {
     if (edit) {
       let newLista = [...list]
@@ -68,8 +69,10 @@ function App() {
   return (
     <div className="App">
       <h1>Lista de tarefas</h1>
-      <input type="text" onChange={handleInput} value={input} ref={inputRef} />
-      <button onClick={handleAdd} className='Add'>Adicionar</button>
+      <div className="input">
+        <input type="text" onChange={handleInput} value={input} ref={inputRef} />
+        <span onClick={handleAdd} className='Add'><AiOutlinePlus /></span>
+      </div>
       <ul>
         {list && list.map((item, index) => (
           <li key={index} className={index}  >
