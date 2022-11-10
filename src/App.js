@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [input, setInput] = useState('');
   const [list, setList] = useState([]);
-  const [cont, setCont] = useState(0);
+  const [cont, setCont] = useState(list.length);
   const [edit, setEdit] = useState(false);
   const [index, setIndex] = useState();
 
@@ -40,7 +40,11 @@ function App() {
   };
 
   useMemo(() => {
-    if (localStorage.tarefas) setList(JSON.parse(localStorage.getItem('tarefas')))
+    if (localStorage.tarefas) { 
+      const tarefas = JSON.parse(localStorage.getItem('tarefas'))
+      setList(tarefas) 
+      setCont(tarefas.length)
+    }
   }, [])
 
   useEffect(() => {
@@ -66,6 +70,8 @@ function App() {
     setInput(tarefaEdit);
     alert('Editando...')
   };
+
+
   return (
     <div className="App">
       <h1>Lista de tarefas</h1>
