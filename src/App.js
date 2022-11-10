@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import { useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
-
 import './App.css';
-import { useEffect } from 'react';
 
 function App() {
   const [input, setInput] = useState('');
@@ -13,10 +10,13 @@ function App() {
   const [edit, setEdit] = useState(false);
   const [index, setIndex] = useState();
 
+  const inputRef = useRef()
+
   const handleInput = (e) => {
     setInput(e.target.value);
   };
 
+  
   const handleAdd = () => {
     if (edit) {
       let newLista = [...list]
@@ -42,9 +42,9 @@ function App() {
     if (localStorage.tarefas) setList(JSON.parse(localStorage.getItem('tarefas')))
   }, [])
 
-  useEffect(()=> {
+  useEffect(() => {
     localStorage.setItem('tarefas', JSON.stringify(list));
-  },[list])
+  }, [list])
 
   cont <= 0 ? document.title = 'Lista de tarefas' : document.title = `${cont} tarefas...`;
 
@@ -57,6 +57,7 @@ function App() {
   };
 
   const handleEdit = (e) => {
+    inputRef.current.focus()
     const index = e.target.parentNode.className;
     const tarefaEdit = list[index];
     setIndex(index)
@@ -67,7 +68,7 @@ function App() {
   return (
     <div className="App">
       <h1>Lista de tarefas</h1>
-      <input type="text" onChange={handleInput} value={input} />
+      <input type="text" onChange={handleInput} value={input} ref={inputRef} />
       <button onClick={handleAdd} className='Add'>Adicionar</button>
       <ul>
         {list && list.map((item, index) => (
