@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useMemo } from 'react';
+import { BsFillTrashFill } from "react-icons/bs";
+import { AiFillEdit } from "react-icons/ai";
 
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
   const [input, setInput] = useState('');
@@ -16,9 +20,12 @@ function App() {
   const handleAdd = () => {
     if (edit) {
       let newLista = [...list]
+      console.log(index)
       newLista[index] = input;
+      console.log(newLista)
       if (list.find(valor => valor === input)) return alert('Digite algo diferente!!');
       if (input === '') return alert('Digite algo');
+
       setList(newLista);
       setInput('');
       setEdit(false);
@@ -28,20 +35,19 @@ function App() {
       setCont(cont + 1)
       const array = [...list, input];
       setList(array);
-      localStorage.setItem('tarefas', JSON.stringify(array))
       setInput('');
     }
-
   };
 
+  useMemo(() => {
+    if (localStorage.tarefas) setList(JSON.parse(localStorage.getItem('tarefas')))
+  }, [])
 
-  if (list.length ===  0) {
-    const json = JSON.parse(localStorage.getItem('tarefas'));
-    console.log(json);
-    setList(json);
-  }
+  useEffect(()=> {
+    localStorage.setItem('tarefas', JSON.stringify(list));
+  },[list])
 
-  cont === 0 ? document.title = 'Lista de tarefas' : document.title = `${cont} tarefas...`;
+  cont <= 0 ? document.title = 'Lista de tarefas' : document.title = `${cont} tarefas...`;
 
   const handleRemove = (e) => {
     setCont(cont - 1);
@@ -49,19 +55,16 @@ function App() {
     const newList = [...list];
     newList.splice(indexDel, 1);
     setList(newList);
-    localStorage.setItem('tarefas', JSON.stringify(newList))
   };
 
   const handleEdit = (e) => {
-    const index = e.target.parentNode.parentNode.className;
+    const index = e.target.parentNode.className;
     const tarefaEdit = list[index];
     setIndex(index)
     setEdit(true);
     setInput(tarefaEdit);
     alert('Editando...')
   };
-  console.log(list)
-
   return (
     <div className="App">
       <h1>Lista de tarefas</h1>
@@ -72,8 +75,8 @@ function App() {
           <li key={index} className={index}  >
             <p key={index} className='tarefa'>{item}</p>
             <div className='button'>
-              <button onClick={handleRemove}>Delete</button>
-              <button onClick={handleEdit}>Editar</button>
+              <span onClick={handleRemove}> <BsFillTrashFill /></span>
+              <span onClick={handleEdit} className={index}><AiFillEdit /></span>
             </div>
           </li>
         ))}

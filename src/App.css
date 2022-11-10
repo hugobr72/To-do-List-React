@@ -71,25 +71,17 @@ li {
   overflow-wrap: anywhere
 }
 
-li button {
+li span {
   flex-wrap: wrap;
-  color: #111;
   font-weight: 500;
-  font-size: 16px;
-  height: 32px;
-  width: 65px;
+  font-size: 26px;
   margin: 10px;
-  background-color: #999;
   border: none;
-  text-align: center;
-  box-shadow: 6px 6px rgb(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
-button:hover {
-  color: rgb(209, 208, 208);
-  background-color: #777;
-  box-shadow: 6px 6px rgb(0, 0, 0, 0.2);
+span:hover {
+  color: rgb(126, 125, 125);
 }
 
 .button {
@@ -116,6 +108,7 @@ button:hover {
   .Add {
     width: 55px;
     font-size: 10px;
+    text-align: center;
   }
 
   h1 {
@@ -126,11 +119,12 @@ button:hover {
     font-size: 15px;
   }
 
-  .button button {
-    width: 55px;
-    height: 28px;
-    font-size: 10px;
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
 
   .tarefa {
     padding-top: 10px;
