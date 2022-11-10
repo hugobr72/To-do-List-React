@@ -25,7 +25,6 @@ function App() {
       console.log(newLista)
       if (list.find(valor => valor === input)) return alert('Digite algo diferente!!');
       if (input === '') return alert('Digite algo');
-
       setList(newLista);
       setInput('');
       setEdit(false);
